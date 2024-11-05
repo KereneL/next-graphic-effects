@@ -1,29 +1,32 @@
 import getMatrices from "./BayerMatrices";
 
 const BayerDither = {
-  values: {
-    displayName: "Bayer Dithering",
-    nValue: {
-      type: 'selection',
-      options: [
-        ["n=2",2],
-        ["n=4",4],
-        ["n=8",8]
-      ],
-      current: 2
-    },
-    spread: {
-      type: 'value-in-range',
-      min: 0,
-      max: 1,
-      step: 0.001,
-      current: 0.5
-    },
-    matrices: getMatrices(),
-
+  schema: {
+    "title": "Bayer Dither",
+    "type": "object",
+    "properties": {
+      "nValue": {
+        "title": "n Value",
+        "type": "number",
+        "enum": [2, 4, 8],
+        "default": 2,
+      },
+      "spread": {
+        "type": "number",
+        "title": "Spread",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.5,
+      }
+    }
+  },
+  matrices: getMatrices(),
+  values:{
+    nValue: 2,
+    spread: 0.5
   },
   channelFunction: function (channelValue, mValue) {
-    const { nValue: {current: nValue}, spread:{current: spread} } = this.values;
+    const { nValue: { current: nValue }, spread: { current: spread } } = this.values;
     let newChannelValue = channelValue / 255
 
     newChannelValue += spread * mValue;
@@ -40,13 +43,13 @@ const BayerDither = {
   },
 
   imageFunction: function (image) {
-    const {  nValue: {current: nValue}, matrices } = this.values;
+    const { nValue: { current: nValue } } = this.values;
     const nSquared = nValue ** 2;
     const imgWidth = image.width;
-    const normalizedMatrix = matrices.get(nValue)
-    .map(val => {
-      return (val / nSquared) - .05
-    })
+    const normalizedMatrix = this.matrices.get(nValue)
+      .map(val => {
+        return (val / nSquared) - .05
+      })
 
     for (let i = 0; i < image.pixels.length; i += 4) {
       const imageX = (i / 4) % imgWidth;

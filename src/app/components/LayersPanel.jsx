@@ -1,10 +1,10 @@
 import React from 'react';
-import EffectList from './EffectList';
+import List from './effects/List';
 
-export default function Panel({ effects, onBackgroundImageChange }) {
+export default function LayersPanel({ effects, onBackgroundImageChange }) {
     return (
         <div
-            className="panel"
+            className="layers-panel"
             style={{
                 minWidth: "128px",
                 maxWidth: "256px",
@@ -16,7 +16,7 @@ export default function Panel({ effects, onBackgroundImageChange }) {
                 position: 'relative',  // Position relative to allow ItemForm to be positioned absolutely
                 overflow: 'visible',  // Ensure that the floating ItemForm can extend beyond the Panel
             }}>
-            <EffectList
+            <List
                 effects={effects}
                 onBackgroundImageChange={onBackgroundImageChange}
                 style={{ position: 'relative' }}

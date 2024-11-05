@@ -1,13 +1,21 @@
 "use client"
-
 import React, { useState } from 'react';
 import Canvas from './components/Canvas';
-import LayerList from './components/LayerList';
+import ToolPanel from './components/ToolPanel';
 import graphicEffects, { getEffectsArr } from './effects/Effects';
 
 export default function Home() {
     const [backgroundImage, setBackgroundImage] = useState(null);
+    const [activeEffect, setActiveEffect] = useState(null);
     const effects = getEffectsArr();
+
+    const handleUpdateLayer = (layerId, updatedValues) => {
+        const effect = effects.find(effect => effect.id === layerId);
+        if (effect) {
+            effect.values = updatedValues;
+            setActiveEffect(effect);  // Trigger real-time update in Canvas
+        }
+    };
 
     return (
         <main
@@ -20,16 +28,13 @@ export default function Home() {
                 position: 'relative',
             }}
         >
-            <div style={{ flexShrink: 0, flexBasis: 'auto' }} className="layers-list">
-                <LayerList
+                <ToolPanel
                     effects={effects}
                     onBackgroundImageChange={setBackgroundImage}
+                    onUpdateLayer={handleUpdateLayer}  // Handle real-time updates
                 />
-            </div>
 
-            <div style={{ flexGrow: 1 }} className="canvas-component">
-                <Canvas backgroundImage={backgroundImage} />
-            </div>
+                <Canvas backgroundImage={backgroundImage} effect={activeEffect} />
         </main>
     );
 }
