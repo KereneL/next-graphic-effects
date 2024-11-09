@@ -1,6 +1,6 @@
-import React from "react";
-import { NextReactP5Wrapper } from "@p5-wrapper/next";
-import p5Sketch from './p5Sketch'
+import React from 'react';
+import { NextReactP5Wrapper } from '@p5-wrapper/next';
+import p5Sketch from "./p5Sketch"
 
 export default function Canvas({ layerList, backgroundImage}) {
   return (

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 
 export default function ImageListItem({ onBackgroundImageChange }) {
   const inputRef = useRef(null);
@@ -19,21 +19,23 @@ export default function ImageListItem({ onBackgroundImageChange }) {
     <div
       onClick={handleBackgroundClick}
       style={{
-        padding: "10px",
-        margin: "5px 0",
-        backgroundColor: "#f8f9fa",
-        color: "#000000",
-        borderRadius: "4px",
-        userSelect: "none",
-        cursor: "pointer",
+        padding: '10px',
+        margin: '5px 0',
+        backgroundColor: '#f39c12',
+        color: '#000000',
+        cursor: 'pointer',
+        borderRadius: '4px',
+        border: '4px solid',
+        borderColor: '#f1c40f',
+        boxSizing: 'border-box',
       }}
     >
       {`🖼 Image...`}
       <input
         ref={inputRef}
-        type="file"
+        type='file'
         accept="image/*"
-        style={{ display: "none" }}
+        style={{ display: 'none' }}
         onChange={handleImageUpload}
       />
     </div>

@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
 import getMatrices from "./BayerMatrices";
 import BayerDitheringComponent from "./component"
 
 const BayerDithering = {
   schema: {
     "title": "Bayer Dithering",
+    "idleStyle": {
+      backgroundColor: '#cbd3da',
+      color: '#000000',
+      borderColor: '#3d4a56',
+      boxSizing: 'border-box',
+  },
+  "selectedStyle": {
+      backgroundColor: '#e74c3c',
+      color: '#f1c40f',
+      borderColor: '#c0392b',
+      boxSizing: 'border-box',
+  }
   },
   component: BayerDitheringComponent,
   matrices: getMatrices(),
@@ -13,7 +24,7 @@ const BayerDithering = {
     spread: 0.5
   },
   channelFunction: function (channelValue, mValue) {
-    const { nValue: { current: nValue }, spread: { current: spread } } = this.values;
+    const { nValue, spread } = this.values;
     let newChannelValue = channelValue / 255
 
     newChannelValue += spread * mValue;
@@ -30,7 +41,7 @@ const BayerDithering = {
   },
 
   imageFunction: function (image) {
-    const { nValue: { current: nValue } } = this.values;
+    const { nValue } = this.values;
     const nSquared = nValue ** 2;
     const imgWidth = image.width;
     const normalizedMatrix = this.matrices.get(nValue)

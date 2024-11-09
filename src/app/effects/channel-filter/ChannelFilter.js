@@ -1,25 +1,36 @@
+
+import ChannelFilterComponent from "./component"
+
 const ChannelFilter = {
 
-    values: {
-        displayName: "Channel Filter",
-        red: {
-            type: 'toggle',
-            state: true,
+    schema: {
+        "title": "Channel Filter",
+        "idleStyle": {
+            backgroundColor: '#cbd3da',
+            color: '#000000',
+            borderColor: '#3d4a56',
+            boxSizing: 'border-box',
         },
-        green: {
-            type: 'toggle',
-            state: true,
-        },
-        blue: {
-            type: 'toggle',
-            state: true,
-        },
+        "selectedStyle": {
+            backgroundColor: '#e74c3c',
+            color: '#f1c40f',
+            borderColor: '#c0392b',
+            boxSizing: 'border-box',
+        }
     },
 
+    values: {
+        red: true,
+        green: true,
+        blue: true,
+    },
+
+    component: ChannelFilterComponent,
+
     pixelFunction: function (pixel) {
-        pixel[0] = this.values.red.state? pixel[0] : 0
-        pixel[1] = this.values.green.state? pixel[1] : 0
-        pixel[2] = this.values.blue.state? pixel[2] : 0
+        pixel[0] = this.values.red? pixel[0] : 0
+        pixel[1] = this.values.green? pixel[1] : 0
+        pixel[2] = this.values.blue? pixel[2] : 0
         return pixel
     },
 

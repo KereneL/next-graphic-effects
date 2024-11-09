@@ -1,22 +1,34 @@
+import GammaCorrectionComponent from "./component"
 
 const GammaCorrection = {
 
-    values: {
-        displayName: "Gamma Correction",
-        gamma: {
-            type: 'value-in-range',
-            min: 0,
-            max: 2,
-            step: 0.001,
-            current: 1,
+    schema: {
+        "title": "Gamma Correction",
+        "idleStyle": {
+            backgroundColor: '#cbd3da',
+            color: '#000000',
+            borderColor: '#3d4a56',
+            boxSizing: 'border-box',
+        },
+        "selectedStyle": {
+            backgroundColor: '#e74c3c',
+            color: '#f1c40f',
+            borderColor: '#c0392b',
+            boxSizing: 'border-box',
         }
+      },
+
+    values: {
+        gamma: 1
     },
+
+    component: GammaCorrectionComponent,
 
     pixelFunction: function (pixel) {
         const gamma = this.values.gamma.current;
-        pixel[0] = ((pixel[0] / 255) ** gamma) * 255
-        pixel[1] = ((pixel[1] / 255) ** gamma) * 255
-        pixel[2] = ((pixel[2] / 255) ** gamma) * 255
+        pixel[0] = ((pixel[0] / 255) ** this.values.gamma) * 255
+        pixel[1] = ((pixel[1] / 255) ** this.values.gamma) * 255
+        pixel[2] = ((pixel[2] / 255) ** this.values.gamma) * 255
     },
 
     imageFunction: function (image) {
@@ -30,6 +42,5 @@ const GammaCorrection = {
         return image
     },
 }
-
 
 export default GammaCorrection

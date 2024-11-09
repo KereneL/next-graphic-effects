@@ -6,8 +6,8 @@ import BayerDither from "./bayer-dithering/BayerDithering";
 // AGGREGATE EFFECTS HERE
 // TODO: Scan folder
 const graphicEffects = {
-    //GammaCorrection,
-    //ChannelFilter,
+    GammaCorrection,
+    ChannelFilter,
     Desaturate,
     BayerDither,
 }

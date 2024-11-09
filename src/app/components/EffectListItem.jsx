@@ -1,11 +1,13 @@
 import React from 'react';
-import LayerControls from './LayerControls';
+import LayerControls from "./LayerControls";
 
 export default function EffectListItem({ layer, provided, isSelected, handleLayerClick, onUpdateLayer }) {
+  const onChangeHandler = (updatedValues) => {   
+    onUpdateLayer(layer.id, updatedValues);
+  };
 
-  function onChangeHandler (updatedLayer){   
-      onUpdateLayer(updatedLayer); // Notify parent of the update
-  }
+  const layerStyle = (isSelected)? layer.schema.selectedStyle:layer.schema.idleStyle;
+  console.log(layer)
 
   return (
     <li
@@ -17,11 +19,11 @@ export default function EffectListItem({ layer, provided, isSelected, handleLaye
         padding: '10px',
         margin: '5px 0',
         cursor: 'pointer',
-        backgroundColor: isSelected ? '#007bff' : '#f8f9fa',
-        color: isSelected ? '#ffffff' : '#000000',
         borderRadius: '4px',
-        userSelect: 'none',
+        border: '4px solid',
+        boxSizing: 'border-box',
         ...provided.draggableProps.style,
+        ...layerStyle,
       }}
     >
       {layer.schema.title}
