@@ -1,7 +1,7 @@
 import React from 'react';
-import List from './effects/List';
+import List from './List';
 
-export default function LayersPanel({ effects, onBackgroundImageChange }) {
+export default function LayersPanel({ layerList, onBackgroundImageChange, onReorderLayers, onUpdateLayer }) {
     return (
         <div
             className="layers-panel"
@@ -17,9 +17,10 @@ export default function LayersPanel({ effects, onBackgroundImageChange }) {
                 overflow: 'visible',  // Ensure that the floating ItemForm can extend beyond the Panel
             }}>
             <List
-                effects={effects}
+            layerList = {layerList}
                 onBackgroundImageChange={onBackgroundImageChange}
-                style={{ position: 'relative' }}
+                onReorderLayers={onReorderLayers}
+                onUpdateLayer={onUpdateLayer}
             />
         </div>
     );

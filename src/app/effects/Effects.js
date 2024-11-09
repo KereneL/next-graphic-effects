@@ -1,19 +1,15 @@
 import GammaCorrection from "./gamma-correction/GammaCorrection";
 import ChannelFilter from "./channel-filter/ChannelFilter";
-import Destaturate from "./destaturate/Destaturate";
-import BayerDither from "./bayer-dither/BayerDither";
+import Desaturate from "./desaturate/Desaturate";
+import BayerDither from "./bayer-dithering/BayerDithering";
 
 // AGGREGATE EFFECTS HERE
 // TODO: Scan folder
 const graphicEffects = {
     //GammaCorrection,
     //ChannelFilter,
-    //Destaturate,
+    Desaturate,
     BayerDither,
-}
-
-export function getEffectsNames() {
-    return Object.values(graphicEffects).map(effect => effect.values.displayName);
 }
 
 export function getEffectsArr() {

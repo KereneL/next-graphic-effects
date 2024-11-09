@@ -2,21 +2,30 @@
 import React, { useState } from 'react';
 import Canvas from './components/Canvas';
 import ToolPanel from './components/ToolPanel';
-import graphicEffects, { getEffectsArr } from './effects/Effects';
+import { getEffectsArr } from './effects/Effects';
 
 export default function Home() {
     const [backgroundImage, setBackgroundImage] = useState(null);
-    const [activeEffect, setActiveEffect] = useState(null);
-    const effects = getEffectsArr();
+    const layerTypes = getEffectsArr();
 
-    const handleUpdateLayer = (layerId, updatedValues) => {
-        const effect = effects.find(effect => effect.id === layerId);
-        if (effect) {
-            effect.values = updatedValues;
-            setActiveEffect(effect);  // Trigger real-time update in Canvas
-        }
+    const [layerList, setLayerList] = useState(
+        /* Seed with all effects types possible */
+        layerTypes.map((type, index) => ({
+          ...type,
+          id: index.toString(),
+          "name": type.schema.title,
+        }))
+    );
+    const handleSetBackgroundImage = (newImage) => {
+        setBackgroundImage(newImage)
     };
-
+    const handleReorderLayers = (newOrder) => {
+        setLayerList(newOrder);
+    };
+    const handleUpdateLayer = (newList) => {
+        console.log("handleUpdateLayer", newList)
+    };
+    
     return (
         <main
             style={{
@@ -28,13 +37,17 @@ export default function Home() {
                 position: 'relative',
             }}
         >
-                <ToolPanel
-                    effects={effects}
-                    onBackgroundImageChange={setBackgroundImage}
-                    onUpdateLayer={handleUpdateLayer}  // Handle real-time updates
-                />
+            <ToolPanel
+                layerList={layerList}
+                onBackgroundImageChange={handleSetBackgroundImage}
+                onUpdateLayer={handleUpdateLayer}
+                onReorderLayers={handleReorderLayers}
+            />
 
-                <Canvas backgroundImage={backgroundImage} effect={activeEffect} />
+            <Canvas
+                layerList={layerList}
+                backgroundImage={backgroundImage}
+            />
         </main>
     );
 }

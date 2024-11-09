@@ -1,25 +1,12 @@
+import React, { useState } from 'react';
 import getMatrices from "./BayerMatrices";
+import BayerDitheringComponent from "./component"
 
-const BayerDither = {
+const BayerDithering = {
   schema: {
-    "title": "Bayer Dither",
-    "type": "object",
-    "properties": {
-      "nValue": {
-        "title": "n Value",
-        "type": "number",
-        "enum": [2, 4, 8],
-        "default": 2,
-      },
-      "spread": {
-        "type": "number",
-        "title": "Spread",
-        "minimum": 0,
-        "maximum": 1,
-        "default": 0.5,
-      }
-    }
+    "title": "Bayer Dithering",
   },
+  component: BayerDitheringComponent,
   matrices: getMatrices(),
   values:{
     nValue: 2,
@@ -73,4 +60,4 @@ const BayerDither = {
 }
 
 
-export default BayerDither;
+export default BayerDithering;

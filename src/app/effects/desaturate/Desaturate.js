@@ -1,15 +1,21 @@
 import Utils from "../Utils"
+import DesaturateComponent from "./component"
 
-const Destaturate = {
+const Desaturate = {
 
-    values:{
-        displayName: "Destaturate",
+    schema: {
+        "title": "Desaturate",
     },
+
+    component: DesaturateComponent,
+    values:{
+        toggle: false,
+      },
     getLuminance: function (pixel) {
-        
+
         return (
-            Utils.getRedLuminance(pixel[0]) + 
-            Utils.getGreenLuminance(pixel[1]) + 
+            Utils.getRedLuminance(pixel[0]) +
+            Utils.getGreenLuminance(pixel[1]) +
             Utils.getBlueLuminance(pixel[2])
         )
     },
@@ -28,7 +34,8 @@ const Destaturate = {
 
         return image
     }
+
 }
 
 
-export default Destaturate
+export default Desaturate

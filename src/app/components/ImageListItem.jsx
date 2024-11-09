@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export default function ImageItem({ onBackgroundImageSelect }) {
+export default function ImageListItem({ onBackgroundImageChange }) {
   const inputRef = useRef(null);
 
   const handleBackgroundClick = () => {
@@ -11,7 +11,7 @@ export default function ImageItem({ onBackgroundImageSelect }) {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      onBackgroundImageSelect(imageUrl); // Pass the image URL to the parent component
+      onBackgroundImageChange(imageUrl); // Pass the image URL to the parent component
     }
   };
 
