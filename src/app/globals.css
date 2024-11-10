@@ -87,7 +87,10 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #2c3e50
+  background: #2c3e50;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 a {
@@ -102,5 +105,6 @@ a {
 }
 
 canvas {
+  
   border: 1px black solid
 }

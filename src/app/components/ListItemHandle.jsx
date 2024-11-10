@@ -2,9 +2,9 @@
 
 import React from "react";
 
-export default function ListItemHandle({handleColor}) {
+export default function ListItemHandle({handleColor, provided}) {
   return (
-    <span
+    <div
       className="list-item-handle"
       style={{
         paddingRight: "0.75em",
@@ -12,8 +12,9 @@ export default function ListItemHandle({handleColor}) {
         lineHeight: "0",
         color: handleColor,
       }}
+      {...provided.dragHandleProps}
     >
       ≡
-    </span>
+    </div>
   );
 }

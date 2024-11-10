@@ -21,7 +21,6 @@ export default function EffectListItem({
     <li
       ref={provided.innerRef}
       {...provided.draggableProps}
-      {...provided.dragHandleProps}
       onClick={handleLayerClick}
       style={{
         padding: '10px',
@@ -38,7 +37,10 @@ export default function EffectListItem({
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <ListItemHandle handleColor={layerStyle.borderColor} />
+        <ListItemHandle 
+        provided={provided}
+        handleColor={layerStyle.borderColor}
+        />
         {layer.schema.title}
       </div>
       {isSelected && (
