@@ -35,6 +35,13 @@ export default function AppWrapper() {
       name: layerTypes[3].schema.title,
       values: { ...layerTypes[3].values },
     },
+    {
+      ...layerTypes[4],
+      id: 4,
+      draggableId: `${layerTypes[4].schema.title}_0`,
+      name: layerTypes[4].schema.title,
+      values: { ...layerTypes[4].values },
+    },
   ]);
 
   const addNewLayer = (layerType) => {

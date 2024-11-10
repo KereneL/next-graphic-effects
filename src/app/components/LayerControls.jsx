@@ -9,7 +9,7 @@ export default function LayerControls({ selectedLayer, onChange }) {
     <div
       style={{
         position: 'absolute',
-        left: '200px',
+        left: '90%',
         marginLeft: '10px',
         padding: '10px',
         border: '1px solid #ddd',

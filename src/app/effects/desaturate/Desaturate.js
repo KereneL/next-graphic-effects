@@ -6,16 +6,14 @@ const Desaturate = {
     schema: {
         "title": "Desaturate",
         "idleStyle": {
-            backgroundColor: '#cbd3da',
+            backgroundColor: '#B4F8C8',
             color: '#000000',
             borderColor: '#3d4a56',
-            boxSizing: 'border-box',
         },
         "selectedStyle": {
-            backgroundColor: '#e74c3c',
-            color: '#f1c40f',
-            borderColor: '#c0392b',
-            boxSizing: 'border-box',
+            backgroundColor: '#B4F8C8',
+            color: '#0b6e29',
+            borderColor: '#12B442',
         }
     },
 
@@ -34,10 +32,11 @@ const Desaturate = {
         )
     },
 
-    imageFunction: function (image) {
+    imageFunction: function ({image}) {
 
         if (!this.values.toggle) return image;
 
+        image.loadPixels();
         for (let i = 0; i < image.pixels.length; i += 4) {
 
             const pixel = [image.pixels[i + 0], image.pixels[i + 1], image.pixels[i + 2]]
@@ -47,6 +46,8 @@ const Desaturate = {
             image.pixels[i + 1] = luminance
             image.pixels[i + 2] = luminance
         }
+        image.updatePixels();
+
 
         return image
     }

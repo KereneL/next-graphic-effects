@@ -9,7 +9,7 @@ export default function ToolPanel({ layerList, onBackgroundImageChange, onReorde
     style={{ 
       flexShrink: "0",
       flexBasis: "auto",
-      margin: '0.5em',
+      margin: '0 0.5em 0 0',
       padding: '0.2em',
       backgroundColor: '#2980b9',
       borderRadius: '4px',

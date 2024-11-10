@@ -1,13 +1,21 @@
-import React from 'react';
+import React from "react";
 import LayerControls from "./LayerControls";
+import ListItemHandle from "./ListItemHandle";
 
-export default function EffectListItem({ layer, provided, isSelected, handleLayerClick, onUpdateLayer }) {
-  const onChangeHandler = (updatedValues) => {   
+export default function EffectListItem({
+  layer,
+  provided,
+  isSelected,
+  handleLayerClick,
+  onUpdateLayer,
+}) {
+  const onChangeHandler = (updatedValues) => {
     onUpdateLayer(layer.id, updatedValues);
   };
 
-  const layerStyle = (isSelected)? layer.schema.selectedStyle:layer.schema.idleStyle;
-  console.log(layer)
+  const layerStyle = isSelected
+    ? layer.schema.selectedStyle
+    : layer.schema.idleStyle;
 
   return (
     <li
@@ -22,17 +30,22 @@ export default function EffectListItem({ layer, provided, isSelected, handleLaye
         borderRadius: '4px',
         border: '4px solid',
         boxSizing: 'border-box',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         ...provided.draggableProps.style,
         ...layerStyle,
       }}
     >
-      {layer.schema.title}
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <ListItemHandle handleColor={layerStyle.borderColor} />
+        {layer.schema.title}
+      </div>
       {isSelected && (
-        <LayerControls
-          selectedLayer={layer}
-          onChange={onChangeHandler}
-        />
+        <LayerControls selectedLayer={layer} onChange={onChangeHandler} />
       )}
+
+      <span style={{ color: layerStyle.borderColor }}>▸</span>
     </li>
   );
 }

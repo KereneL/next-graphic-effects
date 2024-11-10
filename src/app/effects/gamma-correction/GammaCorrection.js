@@ -5,15 +5,15 @@ const GammaCorrection = {
     schema: {
         "title": "Gamma Correction",
         "idleStyle": {
-            backgroundColor: '#cbd3da',
+            backgroundColor: '#FFAEBC',
             color: '#000000',
             borderColor: '#3d4a56',
             boxSizing: 'border-box',
         },
         "selectedStyle": {
-            backgroundColor: '#e74c3c',
-            color: '#f1c40f',
-            borderColor: '#c0392b',
+            backgroundColor: '#FFAEBC',
+            color: '#ff163e',
+            borderColor: '#ff627d',
             boxSizing: 'border-box',
         }
       },
@@ -31,7 +31,9 @@ const GammaCorrection = {
         pixel[2] = ((pixel[2] / 255) ** this.values.gamma) * 255
     },
 
-    imageFunction: function (image) {
+    imageFunction: function ({image}) {
+       
+        image.loadPixels();
         for (let i = 0; i < image.pixels.length; i += 4) {
             const correctedPixel = [image.pixels[i + 0], image.pixels[i + 1], image.pixels[i + 2]]
             this.pixelFunction(correctedPixel)
@@ -39,6 +41,8 @@ const GammaCorrection = {
             image.pixels[i + 1] = correctedPixel[1]
             image.pixels[i + 2] = correctedPixel[2]
         }
+        image.updatePixels();
+
         return image
     },
 }

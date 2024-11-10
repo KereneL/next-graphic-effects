@@ -6,16 +6,14 @@ const ChannelFilter = {
     schema: {
         "title": "Channel Filter",
         "idleStyle": {
-            backgroundColor: '#cbd3da',
+            backgroundColor: '#B4F8C8',
             color: '#000000',
             borderColor: '#3d4a56',
-            boxSizing: 'border-box',
         },
         "selectedStyle": {
-            backgroundColor: '#e74c3c',
-            color: '#f1c40f',
-            borderColor: '#c0392b',
-            boxSizing: 'border-box',
+            backgroundColor: '#B4F8C8',
+            color: '#0b6e29',
+            borderColor: '#12B442',
         }
     },
 
@@ -34,8 +32,9 @@ const ChannelFilter = {
         return pixel
     },
 
-    imageFunction: function (image) {
+    imageFunction: function ({image}) {
 
+        image.loadPixels();
         for (let i = 0; i < image.pixels.length; i += 4) {
             const correctedPixel = [image.pixels[i + 0], image.pixels[i + 1], image.pixels[i + 2]]
             this.pixelFunction(correctedPixel)
@@ -43,6 +42,7 @@ const ChannelFilter = {
             image.pixels[i + 1] = correctedPixel[1]
             image.pixels[i + 2] = correctedPixel[2]
         }
+        image.updatePixels();
 
         return image
     }

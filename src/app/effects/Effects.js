@@ -2,10 +2,12 @@ import GammaCorrection from "./gamma-correction/GammaCorrection";
 import ChannelFilter from "./channel-filter/ChannelFilter";
 import Desaturate from "./desaturate/Desaturate";
 import BayerDither from "./bayer-dithering/BayerDithering";
+import Resize from "./resize/Resize";
 
 // AGGREGATE EFFECTS HERE
 // TODO: Scan folder
 const graphicEffects = {
+    Resize,
     GammaCorrection,
     ChannelFilter,
     Desaturate,

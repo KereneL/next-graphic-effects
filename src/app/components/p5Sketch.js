@@ -26,15 +26,14 @@ const p5Sketch = (p5) => {
     if (!image) return
 
     affectedImage = image.get();
-    affectedImage.loadPixels();
 
     p5.layerList.forEach((layer, index) => {
       console.log(index, layer.name, layer.values)
-      affectedImage = layer.imageFunction(affectedImage)
+      let newImage = layer.imageFunction({p5, "image": affectedImage})
+      affectedImage = newImage;
     });
 
-    affectedImage.updatePixels();
-    p5.image(affectedImage, 0, 0);
+    p5.image(affectedImage, 0, 0, affectedImage.width, affectedImage.height);
   };
 };
 

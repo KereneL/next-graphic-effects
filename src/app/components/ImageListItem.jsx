@@ -21,16 +21,28 @@ export default function ImageListItem({ onBackgroundImageChange }) {
       style={{
         padding: '10px',
         margin: '5px 0',
-        backgroundColor: '#f39c12',
+        backgroundColor: '#cbd3da',
         color: '#000000',
         cursor: 'pointer',
         borderRadius: '4px',
         border: '4px solid',
-        borderColor: '#f1c40f',
+        borderColor: '#3d4a56',
         boxSizing: 'border-box',
+        display: 'flex',
+        alignItems: 'center' ,
+        justifyContent: 'space-between',
+        
       }}
     >
-      {`🖼 Image...`}
+      <div>
+      <span style={{
+        paddingRight: "0.75em",
+        lineHeight: "0",
+      }}>{`🖼`}</span>
+      <span style={{}}>{`Image`}</span>
+      </div>
+      <span style={{}}>{`…`}</span>
+      
       <input
         ref={inputRef}
         type='file'
