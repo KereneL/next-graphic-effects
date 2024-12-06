@@ -16,7 +16,7 @@ const graphicEffects = {
 
 export function getEffectsArr() {
     const effects = []
-    for (let effect in graphicEffects){
+    for (let effect in graphicEffects) {
         effects.push(graphicEffects[effect])
     }
     return effects

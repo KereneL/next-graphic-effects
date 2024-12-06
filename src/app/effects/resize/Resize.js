@@ -16,8 +16,9 @@ const Resize = {
             borderColor: '#f1ab38  ',
             boxSizing: 'border-box',
         }
-      },
+    },
 
+    enabled: true,
     values: {
         width: 0,
         height: 0,
@@ -25,12 +26,17 @@ const Resize = {
 
     component: ResizeComponent,
 
-    imageFunction: function ({p5, image}) {
-        console.log(image)
-        image.resize(parseInt(this.values.width),parseInt(this.values.height))
-        console.log(image)
+    imageFunction: function ({ p5, image }) {
+        let newWidth = parseInt(this.values.width)
+        let newHeight = parseInt(this.values.height)
+
+        image.resize(newWidth, newHeight)
         return image
     },
 }
 
+const normCanvasSize = (axis) => {
+    const parsed = parseInt(Math.ceil(axis));
+    const measure = Math.max(1, parsed)
+}
 export default Resize

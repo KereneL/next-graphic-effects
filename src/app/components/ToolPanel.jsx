@@ -1,30 +1,21 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 import LayersPanel from "./LayersPanel";
 
-export default function ToolPanel({ layerList, onBackgroundImageChange, onReorderLayers, onUpdateLayer }) {
+export default function ToolPanel() {
   return (
-    <div className="tool-panel" 
-    style={{ 
-      flexShrink: "0",
-      flexBasis: "auto",
-      margin: '0 0.5em 0 0',
-      padding: '0.2em',
-      backgroundColor: '#2980b9',
-      borderRadius: '4px',
-      border: '4px solid',
-      borderColor: '#3498db',
-      }}>
-
-      <LayersPanel
-        layerList={layerList}
-        onBackgroundImageChange={onBackgroundImageChange}
-        onReorderLayers={onReorderLayers}
-        onUpdateLayer={onUpdateLayer}
-      />
-
-      {/*<p>some bottom text here</p>*/}
+    <div
+      className="tool-panel"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        margin: "0 0 0 0",
+        padding: "0.5em",
+      }}
+    >
+      {/*<p>some top text here maybe</p>*/}
+      <LayersPanel />
     </div>
   );
 }

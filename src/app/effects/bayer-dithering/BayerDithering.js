@@ -8,16 +8,17 @@ const BayerDithering = {
       backgroundColor: '#a0e7e5',
       color: '#000000',
       borderColor: '#3d4a56',
-  },
-  "selectedStyle": {
+    },
+    "selectedStyle": {
       backgroundColor: '#a0e7e5',
       color: '#124543 ',
       borderColor: '#30bfba ',
-  }
+    }
   },
   component: BayerDitheringComponent,
   matrices: getMatrices(),
-  values:{
+  enabled: true,
+  values: {
     nValue: 2,
     spread: 0.5
   },
@@ -38,7 +39,7 @@ const BayerDithering = {
     return pixel
   },
 
-  imageFunction: function ({image}) {
+  imageFunction: function ({ image }) {
     const { nValue } = this.values;
     const nSquared = nValue ** 2;
     const imgWidth = image.width;
@@ -47,7 +48,7 @@ const BayerDithering = {
         return (val / nSquared) - .05
       })
 
-      image.loadPixels();
+    image.loadPixels();
     for (let i = 0; i < image.pixels.length; i += 4) {
       const imageX = (i / 4) % imgWidth;
       const imageY = Math.floor((i / 4) / imgWidth);

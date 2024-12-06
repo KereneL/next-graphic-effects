@@ -1,90 +1,18 @@
-import React, { useState } from "react";
-import Canvas from "./Canvas";
+"use client";
+
+import { P5Provider } from "./P5Context";
+import P5Canvas from "./P5Canvas";
 import ToolPanel from "./ToolPanel";
-import { getEffectsArr } from "../effects/Effects";
+import { sketch } from "./sketch";
+import React from "react";
 
 export default function AppWrapper() {
-  const layerTypes = getEffectsArr();
-  const [backgroundImage, setBackgroundImage] = useState(null);
-  const [layerList, setLayerList] = useState([
-    {
-      ...layerTypes[0],
-      id: 0,
-      draggableId: `${layerTypes[0].schema.title}_0`,
-      name: layerTypes[0].schema.title,
-      values: { ...layerTypes[0].values },
-    },
-    {
-      ...layerTypes[1],
-      id: 1,
-      draggableId: `${layerTypes[1].schema.title}_0`,
-      name: layerTypes[1].schema.title,
-      values: { ...layerTypes[1].values },
-    },
-    {
-      ...layerTypes[2],
-      id: 2,
-      draggableId: `${layerTypes[2].schema.title}_0`,
-      name: layerTypes[2].schema.title,
-      values: { ...layerTypes[2].values },
-    },
-    {
-      ...layerTypes[3],
-      id: 3,
-      draggableId: `${layerTypes[3].schema.title}_0`,
-      name: layerTypes[3].schema.title,
-      values: { ...layerTypes[3].values },
-    },
-    {
-      ...layerTypes[4],
-      id: 4,
-      draggableId: `${layerTypes[4].schema.title}_0`,
-      name: layerTypes[4].schema.title,
-      values: { ...layerTypes[4].values },
-    },
-  ]);
-
-  const addNewLayer = (layerType) => {
-    const newLayer = {
-      ...layerType,
-      id: layerList.length,
-      draggableId: layerType.schema.title + "_" + layerList.length,
-      name: layerType.schema.title,
-      values: layerType.values,
-    };
-    setLayerList((prevList) => [...prevList, newLayer]);
-  };
-
-  const handleSetBackgroundImage = (newImage) => {
-    setBackgroundImage(newImage);
-  };
-
-  const handleReorderLayers = (newOrder) => {
-    setLayerList(newOrder);
-  };
-
-  const handleUpdateLayer = (updatedLayerId, updatedValues) => {
-    setLayerList((prevList) =>
-      prevList.map((layer) =>
-        layer.id === updatedLayerId
-          ? { ...layer, values: updatedValues }
-          : layer
-      )
-    );
-  };
-
   return (
-    <>
-      <ToolPanel
-        layerList={layerList}
-        layerTypes={layerTypes}
-        onAddLayer={addNewLayer}
-        onBackgroundImageChange={handleSetBackgroundImage}
-        onUpdateLayer={handleUpdateLayer}
-        onReorderLayers={handleReorderLayers}
-      />
-
-      <Canvas layerList={layerList} backgroundImage={backgroundImage} />
-    </>
+    <div className="grid justify-items-center p-8 pb-20 gap-8 font-[family-name:var(--font-geist-sans)]">
+      <P5Provider sketch={sketch}>
+        <P5Canvas />
+        <ToolPanel />
+      </P5Provider>
+    </div>
   );
 }

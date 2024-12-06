@@ -16,10 +16,11 @@ const GammaCorrection = {
             borderColor: '#ff627d',
             boxSizing: 'border-box',
         }
-      },
+    },
 
+    enabled: true,
     values: {
-        gamma: 1
+        gamma: 1.2
     },
 
     component: GammaCorrectionComponent,
@@ -31,8 +32,8 @@ const GammaCorrection = {
         pixel[2] = ((pixel[2] / 255) ** this.values.gamma) * 255
     },
 
-    imageFunction: function ({image}) {
-       
+    imageFunction: function ({ image }) {
+
         image.loadPixels();
         for (let i = 0; i < image.pixels.length; i += 4) {
             const correctedPixel = [image.pixels[i + 0], image.pixels[i + 1], image.pixels[i + 2]]

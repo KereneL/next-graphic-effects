@@ -13,6 +13,7 @@ export default function Home() {
                 padding: '1rem',
                 minHeight: '100vh',
                 position: 'relative',
+                justifyContent: 'center',
             }}
         >
             <AppWrapper
@@ -25,7 +26,6 @@ export default function Home() {
                     position: 'relative',
                 }}
             />
-
         </main>
     );
 }

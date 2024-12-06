@@ -1,17 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
+import { useP5Context } from "./P5Context";
 
-export default function ImageListItem({ onBackgroundImageChange }) {
-  const inputRef = useRef(null);
+export default function ImageListItem() {
+  const { loadSketchImage } = useP5Context();
+  const inputRef = useRef();
 
   const handleBackgroundClick = () => {
-    inputRef.current.click(); // Open the file input dialog
+    inputRef.current.click();
   };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    if (file) {
+    if (file && file.type.startsWith("image/")) {
       const imageUrl = URL.createObjectURL(file);
-      onBackgroundImageChange(imageUrl); // Pass the image URL to the parent component
+      loadSketchImage(imageUrl);
+    } else {
+      alert("Please select a valid image file.");
     }
   };
 
@@ -19,35 +23,29 @@ export default function ImageListItem({ onBackgroundImageChange }) {
     <div
       onClick={handleBackgroundClick}
       style={{
-        padding: '10px',
-        margin: '5px 0',
-        backgroundColor: '#cbd3da',
-        color: '#000000',
-        cursor: 'pointer',
-        borderRadius: '4px',
-        border: '4px solid',
-        borderColor: '#3d4a56',
-        boxSizing: 'border-box',
-        display: 'flex',
-        alignItems: 'center' ,
-        justifyContent: 'space-between',
-        
+        padding: "10px",
+        margin: "5px 0",
+        backgroundColor: "#cbd3da",
+        color: "#000",
+        cursor: "pointer",
+        borderRadius: "4px",
+        border: "4px solid",
+        borderColor: "#3d4a56",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
       <div>
-      <span style={{
-        paddingRight: "0.75em",
-        lineHeight: "0",
-      }}>{`🖼`}</span>
-      <span style={{}}>{`Image`}</span>
+        <span style={{ paddingInlineEnd: "0.75em" }}>🖼</span>
+        <span>Image</span>
       </div>
-      <span style={{}}>{`…`}</span>
-      
+      <span>…</span>
       <input
         ref={inputRef}
-        type='file'
+        type="file"
         accept="image/*"
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         onChange={handleImageUpload}
       />
     </div>

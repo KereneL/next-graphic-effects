@@ -17,10 +17,8 @@ const Desaturate = {
         }
     },
 
-    values: {
-        toggle: false,
-    },
-    
+    enabled: false,
+
     component: DesaturateComponent,
 
     getLuminance: function (pixel) {
@@ -29,27 +27,23 @@ const Desaturate = {
             Utils.getRedLuminance(pixel[0]) +
             Utils.getGreenLuminance(pixel[1]) +
             Utils.getBlueLuminance(pixel[2])
-        )
+        );
     },
 
-    imageFunction: function ({image}) {
-
-        if (!this.values.toggle) return image;
-
+    imageFunction: function ({ image }) {
         image.loadPixels();
         for (let i = 0; i < image.pixels.length; i += 4) {
 
-            const pixel = [image.pixels[i + 0], image.pixels[i + 1], image.pixels[i + 2]]
-            const luminance = this.getLuminance(pixel)
+            const pixel = [image.pixels[i + 0], image.pixels[i + 1], image.pixels[i + 2]];
+            const luminance = this.getLuminance(pixel);
 
-            image.pixels[i + 0] = luminance
-            image.pixels[i + 1] = luminance
-            image.pixels[i + 2] = luminance
+            image.pixels[i + 0] = luminance;
+            image.pixels[i + 1] = luminance;
+            image.pixels[i + 2] = luminance;
         }
         image.updatePixels();
 
-
-        return image
+        return image;
     }
 
 }

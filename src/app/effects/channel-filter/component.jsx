@@ -11,37 +11,52 @@ export default function ChannelFilterComponent({ values, onChange }) {
     onChange({ ...values, blue: !values.blue });
   };
 
+  const labelStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    paddingInlineStart: "0.25em",
+  };
+
+  const color = `rgb(${255 * values.red},${255 * values.green},${
+    255 * values.blue
+  },0.1)`;
   return (
-    <>
-      <label>
-      Red:
+    <div style={{ backgroundColor: color, padding: "10px" }}>
+      <div style={{ marginBlockEnd: ".25em", fontWeight: "bold" }}>
+        RGB Channel Mixer
+      </div>
+      <label style={labelStyle}>
+        <span>Red:</span>
         <input
           type="checkbox"
           name="red-channel-toggle"
           checked={values.red}
           onChange={handleRedToggle}
+          style={{ accentColor: "#ff0000" }}
         />
       </label>
 
-      <label>
-      Green:
+      <label style={labelStyle}>
+        <span>Green:</span>
         <input
           type="checkbox"
           name="green-channel-toggle"
           checked={values.green}
           onChange={handleGreenToggle}
+          style={{ accentColor: "#00ff00" }}
         />
       </label>
 
-      <label>
-      Blue:
+      <label style={labelStyle}>
+        <span>Blue:</span>
         <input
           type="checkbox"
           name="blue-channel-toggle"
           checked={values.blue}
           onChange={handleBlueToggle}
+          style={{ accentColor: "#0000ff" }}
         />
       </label>
-    </>
+    </div>
   );
 }

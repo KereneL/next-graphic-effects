@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function BayerDitheringComponent({ values, onChange }) {
   const handleSelectChange = (e) => {
@@ -10,22 +10,43 @@ export default function BayerDitheringComponent({ values, onChange }) {
   };
 
   return (
-    <>
+    <div style={{ padding: "10px" }}>
+      <div style={{ marginBlockEnd: ".25em", fontWeight: "bold" }}>
+        Bayer Dithering
+      </div>
+
       <label>
-        n Value:
-        <select
-          name="bayer-n-value"
-          value={values.nValue}
-          onChange={handleSelectChange}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingInlineStart: "0.25em",
+          }}
         >
-          <option value="2">n= 2^1</option>
-          <option value="4">n= 2^2</option>
-          <option value="8">n= 2^3</option>
-        </select>
+          <span>n Value:</span>
+          <select
+            name="bayer-n-value"
+            value={values.nValue}
+            onChange={handleSelectChange}
+          >
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="8">8</option>
+          </select>
+        </div>
       </label>
+
       <label>
-        Spread: {values.spread}
-        <br />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingInlineStart: "0.25em",
+          }}
+        >
+          <span>Spread:</span>
+          <span>{values.spread}</span>
+        </div>
         <input
           type="range"
           min="0"
@@ -37,6 +58,6 @@ export default function BayerDitheringComponent({ values, onChange }) {
           className="bayer-spread-slider"
         />
       </label>
-    </>
+    </div>
   );
 }

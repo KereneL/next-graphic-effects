@@ -17,8 +17,9 @@ const ChannelFilter = {
         }
     },
 
+    enabled: true,
     values: {
-        red: true,
+        red: false,
         green: true,
         blue: true,
     },
@@ -26,13 +27,13 @@ const ChannelFilter = {
     component: ChannelFilterComponent,
 
     pixelFunction: function (pixel) {
-        pixel[0] = this.values.red? pixel[0] : 0
-        pixel[1] = this.values.green? pixel[1] : 0
-        pixel[2] = this.values.blue? pixel[2] : 0
+        pixel[0] = this.values.red ? pixel[0] : 0
+        pixel[1] = this.values.green ? pixel[1] : 0
+        pixel[2] = this.values.blue ? pixel[2] : 0
         return pixel
     },
 
-    imageFunction: function ({image}) {
+    imageFunction: function ({ image }) {
 
         image.loadPixels();
         for (let i = 0; i < image.pixels.length; i += 4) {

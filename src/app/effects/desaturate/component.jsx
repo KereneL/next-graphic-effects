@@ -1,21 +1,13 @@
 import React from "react";
 
-export default function DesaturateComponent({ values, onChange }) {
-  const handleToggleChange = (e) => {
-    onChange({ ...values, toggle: !values.toggle });
-  };
-
+export default function DesaturateComponent({}) {
   return (
-    <>
+    <div style={{ padding: "10px" }}>
       <label>
-        Desaturation:
-        <input
-          type="checkbox"
-          name="desaturation-toggle"
-          checked={values.toggle}
-          onChange={handleToggleChange}
-        />
+        <div style={{ marginBlockEnd: ".25em", fontWeight: "bold" }}>
+          Desaturation Effect
+        </div>
       </label>
-    </>
+    </div>
   );
 }
