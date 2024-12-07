@@ -10,7 +10,7 @@ export default function ResizeComponent({ values, onChange }) {
 
   return (
     <div style={{ padding: "10px" }}>
-      <div style={{ marginBlockEnd: ".25em", fontWeight: "bold" }}>Resize</div>
+      <div style={{ marginBlockEnd: ".25em", fontWeight: "bold" }}>Resize - ⚠ WIP</div>
       <label>
         <div
           style={{
@@ -45,8 +45,8 @@ export default function ResizeComponent({ values, onChange }) {
 
         <input
           type="text"
-          value={values.width}
-          onChange={handleWidthChange}
+          value={values.height}
+          onChange={handleHeightChange}
           className="resizer-width-input"
         />
       </label>
