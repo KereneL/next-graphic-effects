@@ -11,21 +11,7 @@ export default function LayerControls({ selectedLayer, onChange }) {
 
   return (
     <div
-      style={{
-        position: "absolute",
-        left: "90%",
-        border: "2px solid rgba(0, 0, 0, 0.75)",
-        borderRadius: "4px",
-        backgroundColor: "#f9f9f9",
-        zIndex: "1000",
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.25)",
-        whiteSpace: "nowrap",
-        color: "#000000",
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-        cursor: "default",
-      }}
+      className="layer-controls"
       onClick={(e) => {
         e.stopPropagation(); // Prevent clicks from propagating
       }}

@@ -22,18 +22,12 @@ export default function ImageListItem() {
   return (
     <div
       onClick={handleBackgroundClick}
+      className="layer-list-item"
       style={{
-        padding: "10px",
-        margin: "5px 0",
         backgroundColor: "#cbd3da",
         color: "#000",
         cursor: "pointer",
-        borderRadius: "4px",
-        border: "4px solid",
         borderColor: "#3d4a56",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
       }}
     >
       <div>

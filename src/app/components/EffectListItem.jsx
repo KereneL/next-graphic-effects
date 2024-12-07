@@ -29,16 +29,8 @@ export default function EffectListItem({
       ref={provided.innerRef}
       {...provided.draggableProps}
       onClick={handleLayerClick}
+      className="layer-list-item"
       style={{
-        padding: "10px",
-        margin: "5px 0",
-        cursor: "pointer",
-        borderRadius: "4px",
-        border: "4px solid",
-        boxSizing: "border-box",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
         ...provided.draggableProps.style,
         ...layerStyle,
       }}

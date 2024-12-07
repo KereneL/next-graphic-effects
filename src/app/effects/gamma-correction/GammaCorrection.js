@@ -5,16 +5,14 @@ const GammaCorrection = {
     schema: {
         "title": "Gamma Correction",
         "idleStyle": {
-            backgroundColor: '#FFAEBC',
+            backgroundColor: '#B4F8C8',
             color: '#000000',
             borderColor: '#3d4a56',
-            boxSizing: 'border-box',
         },
         "selectedStyle": {
-            backgroundColor: '#FFAEBC',
-            color: '#ff163e',
-            borderColor: '#ff627d',
-            boxSizing: 'border-box',
+            backgroundColor: '#B4F8C8',
+            color: '#0b6e29',
+            borderColor: '#12B442',
         }
     },
 

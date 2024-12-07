@@ -39,7 +39,7 @@ export default function List() {
             <ul
               {...provided.droppableProps}
               ref={provided.innerRef}
-              style={{ listStyleType: "none", padding: "0" }}
+              className="layer-list"
             >
               <ImageListItem />
               {layerList.map((layer, index) => (
