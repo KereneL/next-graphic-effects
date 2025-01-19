@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import LayerControls from "./LayerControls";
 import ListItemHandle from "./ListItemHandle";
@@ -23,10 +25,10 @@ export default function EffectListItem({
     const updatedLayer = { ...layer, enabled: newToggleState };
     onLayerChange(updatedLayer);
   };
-
   return (
     <li
       ref={provided.innerRef}
+      key={layer.id}
       {...provided.draggableProps}
       onClick={handleLayerClick}
       className="layer-list-item"

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useRef } from "react";
 import { useP5Context } from "./P5Context";
 

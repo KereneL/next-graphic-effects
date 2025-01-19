@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import EffectListItem from "./EffectListItem";
@@ -6,7 +8,7 @@ import { useP5Context } from "./P5Context";
 
 export default function List() {
   const { sketchProps, changeSketchProps } = useP5Context();
-  const [layerList, setLayerList] = useState(sketchProps.layerList);
+  const [layerList, setLayerList] = useState(sketchProps.effectList);
   const [selectedLayerId, setSelectedLayerId] = useState(null);
 
   const handleLayerClick = (id) => {
@@ -18,7 +20,7 @@ export default function List() {
       layer.id === updatedLayer.id ? updatedLayer : layer
     );
     setLayerList(updatedLayerList);
-    changeSketchProps({ layerList: updatedLayerList });
+    changeSketchProps({ effectList: updatedLayerList });
   };
 
   const handleDragEnd = (result) => {
@@ -28,7 +30,7 @@ export default function List() {
     const [movedLayer] = reorderedLayers.splice(result.source.index, 1);
     reorderedLayers.splice(result.destination.index, 0, movedLayer);
     setLayerList(reorderedLayers);
-    changeSketchProps({ layerList: reorderedLayers });
+    changeSketchProps({ effectList: reorderedLayers });
   };
 
   return (
@@ -42,23 +44,21 @@ export default function List() {
               className="layer-list"
             >
               <ImageListItem />
-              {layerList.map((layer, index) => (
-                <Draggable
-                  key={layer.id}
-                  draggableId={layer.draggableId}
-                  index={index}
-                >
-                  {(provided) => (
-                    <EffectListItem
-                      layer={layer}
-                      provided={provided}
-                      isSelected={selectedLayerId === layer.id}
-                      handleLayerClick={() => handleLayerClick(layer.id)}
-                      onLayerChange={handleLayerChange}
-                    />
-                  )}
-                </Draggable>
-              ))}
+              {layerList.map((layer, index) => {
+                return (
+                  <Draggable key={layer.id} draggableId={String(layer.id)} index={index}>
+                    {(provided) => (
+                      <EffectListItem
+                        layer={layer}
+                        provided={provided}
+                        isSelected={selectedLayerId === layer.id}
+                        handleLayerClick={() => handleLayerClick(layer.id)}
+                        onLayerChange={handleLayerChange}
+                      />
+                    )}
+                  </Draggable>
+                );
+              })}
               {provided.placeholder}
             </ul>
           )}

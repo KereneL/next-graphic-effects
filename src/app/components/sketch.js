@@ -4,7 +4,7 @@ const sketch = (p5, parentRef, initProps) => {
   let canvasRef = null;
   let image = null;
   let props = {
-    layerList: []
+    effectList: []
   }
 
   const iterateLayers = (ogImage, layers) => {
@@ -77,7 +77,7 @@ const sketch = (p5, parentRef, initProps) => {
   p5.customDraw = () => {
     // console.log("p5.customDraw");
     if (!image) return;
-    let affectedImage = iterateLayers(image.get(), props.layerList);
+    let affectedImage = iterateLayers(image.get(), props.effectList);
     p5.clear();
     p5.image(affectedImage, canvasWidth / 2, canvasHeight / 2);
   };
