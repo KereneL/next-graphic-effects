@@ -14,12 +14,22 @@ const graphicEffects = {
     BayerDither,
 }
 
-export function getEffectsArr() {
+export function getEffectList() {
     const effects = []
     for (let effect in graphicEffects) {
         effects.push(graphicEffects[effect])
     }
-    return effects
+
+    const effectList = [];
+    effects.map((layerType, index) => {
+        effectList.push({
+            ...layerType,
+            id: index,
+            name: layerType.schema.title,
+            values: { ...layerType.values },
+        });
+    });
+    return effectList
 }
 
 export default graphicEffects

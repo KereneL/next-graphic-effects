@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import EffectListItem from "./EffectListItem";
@@ -6,7 +8,7 @@ import { useP5Context } from "./P5Context";
 
 export default function List() {
   const { sketchProps, changeSketchProps } = useP5Context();
-  const [layerList, setLayerList] = useState(sketchProps.layerList);
+  const [layerList, setLayerList] = useState(sketchProps.effectList);
   const [selectedLayerId, setSelectedLayerId] = useState(null);
 
   const handleLayerClick = (id) => {
@@ -42,23 +44,21 @@ export default function List() {
               className="layer-list"
             >
               <ImageListItem />
-              {layerList.map((layer, index) => (
-                <Draggable
-                  key={layer.id}
-                  draggableId={layer.draggableId}
-                  index={index}
-                >
-                  {(provided) => (
-                    <EffectListItem
-                      layer={layer}
-                      provided={provided}
-                      isSelected={selectedLayerId === layer.id}
-                      handleLayerClick={() => handleLayerClick(layer.id)}
-                      onLayerChange={handleLayerChange}
-                    />
-                  )}
-                </Draggable>
-              ))}
+              {layerList.map((layer, index) => {
+                return (
+                  <Draggable key={layer.id} draggableId={String(layer.id)} index={index}>
+                    {(provided) => (
+                      <EffectListItem
+                        layer={layer}
+                        provided={provided}
+                        isSelected={selectedLayerId === layer.id}
+                        handleLayerClick={() => handleLayerClick(layer.id)}
+                        onLayerChange={handleLayerChange}
+                      />
+                    )}
+                  </Draggable>
+                );
+              })}
               {provided.placeholder}
             </ul>
           )}

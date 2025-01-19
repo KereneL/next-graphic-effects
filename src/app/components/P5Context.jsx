@@ -7,52 +7,19 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { getEffectsArr } from "../effects/Effects";
+import { getEffectList } from "../effects/Effects";
 
-const layerTypes = getEffectsArr();
-const defaultProps = {
-  initImgUrl: "/ostrich.jpg",
-  layerList: [
-    {
-      ...layerTypes[0],
-      id: 0,
-      draggableId: `${layerTypes[0].schema.title}_0`,
-      name: layerTypes[0].schema.title,
-      values: { ...layerTypes[0].values },
-    },
-    {
-      ...layerTypes[1],
-      id: 1,
-      draggableId: `${layerTypes[1].schema.title}_0`,
-      name: layerTypes[1].schema.title,
-      values: { ...layerTypes[1].values },
-    },
-    {
-      ...layerTypes[2],
-      id: 2,
-      draggableId: `${layerTypes[2].schema.title}_0`,
-      name: layerTypes[2].schema.title,
-      values: { ...layerTypes[2].values },
-    },
-    {
-      ...layerTypes[3],
-      id: 3,
-      draggableId: `${layerTypes[3].schema.title}_0`,
-      name: layerTypes[3].schema.title,
-      values: { ...layerTypes[3].values },
-    },
-    {
-      ...layerTypes[4],
-      id: 4,
-      draggableId: `${layerTypes[4].schema.title}_0`,
-      name: layerTypes[4].schema.title,
-      values: { ...layerTypes[4].values },
-    },
-  ],
-};
 const P5Context = createContext();
 
 export const P5Provider = ({ sketch, children }) => {
+
+const effectList = getEffectList();
+
+const defaultProps = {
+  initImgUrl: "/ostrich.jpg",
+  effectList,
+};
+
   const parentRef = useRef(null);
   const p5InstanceRef = useRef(null);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -89,6 +56,8 @@ export const P5Provider = ({ sketch, children }) => {
       p5InstanceRef.current = new p5((p) => {
         if (parentRef.current) {
           // console.log("Attaching canvas to parentRef");
+          console.log( sketchProps )
+
           sketch(p, parentRef.current, sketchProps);
         }
       });
