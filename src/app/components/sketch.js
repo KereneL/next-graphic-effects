@@ -22,9 +22,9 @@ const sketch = (p5, parentRef, initProps) => {
 
   p5.customLoadImage = (url) => {
     const successCallback = (loadedImg) => {
-      console.log(`Image loaded successfully: '${url}':`, loadedImg);
+      console.log(`Image loaded successfully.`, loadedImg);
       image = loadedImg;
-      p5.fitCavasSizeToImage();
+      p5.customDraw()
     };
     const errorCallback = (error) => {
       console.error(`Failed to load image: '${url}':`, error);
@@ -55,17 +55,11 @@ const sketch = (p5, parentRef, initProps) => {
     p5.customDraw();
   };
 
-  p5.fitCavasSizeToImage = () => {
-    // console.log("p5.fitCavasSizeToImage");
-    p5.changeCanvasSize({ width: image.width, height: image.height })
-  };
-
   p5.changeCanvasSize = (canvasSize) => {
     // console.log("p5.changeCanvasSize");
     canvasWidth = canvasSize.width || canvasWidth;
     canvasHeight = canvasSize.height || canvasHeight;
-    p5.resizeCanvas(canvasWidth, canvasHeight);
-    p5.customDraw();
+    p5.resizeCanvas(canvasWidth, canvasHeight, true);
   };
 
   p5.updateProps = (newProps) => {
@@ -79,6 +73,7 @@ const sketch = (p5, parentRef, initProps) => {
     if (!image) return;
     let affectedImage = iterateLayers(image.get(), props.effectList);
     p5.clear();
+    p5.changeCanvasSize({ width: affectedImage.width, height: affectedImage.height })
     p5.image(affectedImage, canvasWidth / 2, canvasHeight / 2);
   };
 };

@@ -18,8 +18,8 @@ const Resize = {
 
     enabled: false,
     values: {
-        width: 0,
-        height: 0,
+        width: 200,
+        height: 200,
     },
 
     component: ResizeComponent,
