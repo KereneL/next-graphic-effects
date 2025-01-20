@@ -13,6 +13,8 @@ const P5Canvas = () => {
       style={{
         background: isInitialized ? "transparent" : "#555555",
         color: "#ffffff",
+        display: "flex",
+        justifyContent: "center",
       }}
     >
       {!isInitialized && <p>Loading canvas...</p>}
