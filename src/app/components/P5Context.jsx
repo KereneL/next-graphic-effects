@@ -56,8 +56,6 @@ const defaultProps = {
       p5InstanceRef.current = new p5((p) => {
         if (parentRef.current) {
           // console.log("Attaching canvas to parentRef");
-          console.log( sketchProps )
-
           sketch(p, parentRef.current, sketchProps);
         }
       });
